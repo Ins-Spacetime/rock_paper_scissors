@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+        <script>
+
+            let win = 0;
+            let loss = 0;
+            let tie = 0;
+            
+            function computerPlay() {
+                let rand = Math.random() * 100;
+                if (rand <= 33.3) {
+                    return "rock";
+                } else if (rand <= 66.6) {
+                    return "paper";
+                } else {
+                    return "scissors";
+                }
+            }
+                
+            function playRound(playerSelection, computerSelection) {
+                playerSelection = playerSelection.toLowerCase();
+                if (playerSelection == "rock" && computerSelection == "paper") {
+                    loss += 1; return "You lose. Paper covers rock.";
+                } else if (playerSelection == "rock" && computerSelection == "scissors") {
+                    win += 1; return "You win! Rock crushes scissors.";
+                } else if (playerSelection == "paper" && computerSelection == "rock") {
+                    win += 1; return "You win! Paper covers rock.";
+                } else if (playerSelection == "paper" && computerSelection == "scissors") {
+                    loss += 1; return "You lose. Scissors cut paper.";
+                } else if (playerSelection == "scissors" && computerSelection == "rock") {
+                    loss +=1; return "You lose. Rock crushes scissors";
+                } else if (playerSelection == "scissors" && computerSelection == "paper") {
+                    loss +=1; return "You win! Scissors cut paper.";
+                } else {
+                    tie = tie + 1; return "It's a tie.";
+                }
+            }
+  
+            function score() {
+                if (win > loss) {
+                    return "You win!";
+                } else if (loss > win) {
+                    return "You lose.";
+                } else {
+                    return "Tie"; 
+                    }
+            }
+                
+            function game() {
+                for (let i = 0; i < 5; i++) {
+                    playerSelection = prompt("Make your move.", "rock");
+                    computerSelection = computerPlay();
+                    
+                    console.log(playerSelection);
+                    console.log(computerSelection);
+                    console.log(playRound(playerSelection, computerSelection));
+                    //console.log(`Wins: ${win}, Losses: ${loss}, Ties: ${tie}`);
+                    
+                }
+                score();             
+            }
+
+        game();
+      
+        console.log(`Wins: ${win}, Losses: ${loss}, Ties: ${tie}`);
+        console.log(score());         
+           
+        </script>
+    </body>
+</html>
